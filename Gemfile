@@ -10,7 +10,7 @@ gem "sinatra-activerecord"
 
 # Run common tasks from the command line
 # https://github.com/ruby/rake
-gem "rake"
+gem "rake", "~> 13.0"
 
 # Provides functionality to interact with a SQLite3 database
 # https://github.com/sparklemotion/sqlite3-ruby
@@ -30,3 +30,5 @@ group :test do
   gem "database_cleaner"
   gem "rspec"
 end
+
+gem "rerun", "~> 0.13.1"
