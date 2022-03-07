@@ -9,6 +9,7 @@ function Home() {
   const handleSelect = e => {
     setMood(e.target.value)
   }
+
   
   const pushRoute = () => {
     navigate(`/${mood}`)
