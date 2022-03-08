@@ -1,15 +1,9 @@
-import React, {useState} from 'react'
+import React from 'react'
 import {useNavigate} from 'react-router-dom'
 
 
-function Home() {
+function Home({handleSelect, mood}) {
   const navigate = useNavigate()
-  const [mood, setMood] = useState('mood')
-
-  const handleSelect = e => {
-    setMood(e.target.value)
-  }
-
   
   const pushRoute = () => {
     navigate(`/${mood}`)
