@@ -1,17 +1,13 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState} from 'react'
 import ActivityCard from './ActivityCard'
 
-function ActivityList({mood}) {
+function ActivityList({mood, activityData}) {
 
-  const [activityData, setActivityData] = useState([])
+  
   const colors = ['#f27279', '#f1b881', '#f1967f', '#f1c37e', '#f1717b']
 
-  useEffect( () => {
-    fetch(`http://localhost:9293/${mood}`)
-    .then(r => r.json())
-    .then(setActivityData)
-  }, [mood])
 
+  
   return (
     <div>
       <div className="center">
