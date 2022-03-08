@@ -1,8 +1,8 @@
 import React from 'react'
 
-function ActivityViewer() {
+function ActivityViewer({activityData}) {
   return (
-    <div>ActivityViewer</div>
+    <div>ActivityViewer {console.log(activityData)}</div>
   )
 }
 
