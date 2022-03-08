@@ -11,7 +11,7 @@ function Home({handleSelect, mood}) {
   
   return (
     <div>
-      <img className="img-logo" src="https://res.cloudinary.com/april-skrine/image/upload/v1646683703/Phase%203%20Project/boredlogo_ccexpress_aagw9x.png" alt="bored logo"/>
+      <img className="img-logo" src="https://res.cloudinary.com/april-skrine/image/upload/v1646748604/Phase%203%20Project/boredlogo2_quh7b5.jpg" alt="bored logo"/>
       <div className="center">
         <select 
           className="select" 
@@ -23,7 +23,7 @@ function Home({handleSelect, mood}) {
           <option value={'adventurous'} style={{fontFamily: 'impact'}}>adventurous</option>
           <option value={'hungry'} style={{fontFamily: 'shizuru'}}>hungry</option>
           <option value={'creative'} style={{fontFamily: 'pacifico'}}>creative</option>
-          <option value={'wild'} style={{fontFamily: 'bangers'}}>wild</option>
+          <option value={'hype'} style={{fontFamily: 'bangers'}}>hype</option>
         </select>
       </div>
       <div className='center'><button className='button' onClick={pushRoute}>show me things to do!</button></div>

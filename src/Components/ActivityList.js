@@ -4,17 +4,23 @@ import ActivityCard from './ActivityCard'
 function ActivityList({mood}) {
 
   const [activityData, setActivityData] = useState([])
+  const colors = ['#f27279', '#f1b881', '#f1967f', '#f1c37e', '#f1717b']
 
   useEffect( () => {
-    fetch(`http://localhost:9292/${mood}`)
+    fetch(`http://localhost:9293/${mood}`)
     .then(r => r.json())
     .then(setActivityData)
-  }, [])  
+  }, [mood])
 
-  
   return (
-    <div>ActivityList
-      {activityData.map(activity => <ActivityCard key={activity.id} activity={activity}/>)}
+    <div>
+      <div className="center">
+        <h1 className={mood} style={{marginTop: '200px', marginRight: '10px', color: '#f1b881'}}>{mood}</h1>
+        <img src="https://res.cloudinary.com/april-skrine/image/upload/v1646748604/Phase%203%20Project/boredlogo2_quh7b5.jpg" alt="logo small" style={{width:'400px', marginTop: '200px'}} />
+      </div>
+        <div className="center-cards" style={{marginTop: '400px'}}>
+          {activityData.map(activity => <ActivityCard key={activity.id} activity={activity} mood={mood}/>)}
+      </div>
     </div>
   )
 }
