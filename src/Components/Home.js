@@ -23,7 +23,7 @@ function Home({handleSelect, mood}) {
           <option value={'adventurous'} style={{fontFamily: 'impact'}}>adventurous</option>
           <option value={'hungry'} style={{fontFamily: 'shizuru'}}>hungry</option>
           <option value={'creative'} style={{fontFamily: 'pacifico'}}>creative</option>
-          <option value={'wild'} style={{fontFamily: 'bangers'}}>wild</option>
+          <option value={'hype'} style={{fontFamily: 'bangers'}}>hype</option>
         </select>
       </div>
       <div className='center'><button className='button' onClick={pushRoute}>show me things to do!</button></div>

@@ -4,12 +4,13 @@ import ActivityCard from './ActivityCard'
 function ActivityList({mood}) {
 
   const [activityData, setActivityData] = useState([])
+  
 
   useEffect( () => {
     fetch(`http://localhost:9292/${mood}`)
     .then(r => r.json())
     .then(setActivityData)
-  }, [])  
+  }, [mood])  
 
   
   return (

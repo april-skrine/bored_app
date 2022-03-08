@@ -2,11 +2,16 @@ import './App.css';
 import Home from './Components/Home';
 import {Routes, Route, BrowserRouter} from 'react-router-dom'
 import ActivityList from './Components/ActivityList';
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 
 function App() {
+  const storedMood = localStorage.getItem('mood')
+  const [mood, setMood] = useState(storedMood ? storedMood : 'mood')
 
-  const [mood, setMood] = useState('mood')
+  useEffect(() => {
+    localStorage.setItem('mood', (mood));
+  }, [mood]);
+
 
 
   const handleSelect = e => {
