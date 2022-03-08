@@ -11,7 +11,7 @@ function Home({handleSelect, mood}) {
   
   return (
     <div>
-      <img className="img-logo" src="https://res.cloudinary.com/april-skrine/image/upload/v1646683703/Phase%203%20Project/boredlogo_ccexpress_aagw9x.png" alt="bored logo"/>
+      <img className="img-logo" src="https://res.cloudinary.com/april-skrine/image/upload/v1646748604/Phase%203%20Project/boredlogo2_quh7b5.jpg" alt="bored logo"/>
       <div className="center">
         <select 
           className="select" 
