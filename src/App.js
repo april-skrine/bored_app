@@ -55,16 +55,9 @@ function App() {
     .then(setActivityData)
   }, [])
 
-  // useEffect( () => {
-  //   fetch(`http://localhost:9292/comments`)
-  //   .then(r => r.json())
-  //   .then(setActivityData)
-  // }, [])
-
   // filter the activity data based on the selected mood
   const filteredActivities = () => {
-    console.log(activityData, favoriteActivities);
-    if (mood === "chill") {
+      if (mood === "chill") {
       return activityData.filter((a) => a.mood_id === 1);
     } else if (mood === "adventurous") {
       return activityData.filter((a) => a.mood_id === 2);
@@ -109,6 +102,7 @@ function App() {
             <FavoriteList
               favoriteActivities={favoriteActivities}
               favoriteClick={favoriteClick}
+              mood={mood}
             />
           }
         />
@@ -124,7 +118,10 @@ function App() {
         />
         <Route
           path="/:mood/:id"
-          element={<ActivityViewer activityData={activityData} />}
+          element={
+            <ActivityViewer 
+                activityData={activityData} 
+                addReview={addReview}/>}
         />
       </Routes>
     </BrowserRouter>
