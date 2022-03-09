@@ -16,7 +16,7 @@ useEffect( () => {
     <div>
       <div>
         <div style={{float: 'left', width: '50%', borderColor: 'black'}}>
-          Content of the activity here
+          Content of the activity here!
         </div>
         <div className="comments" style={{float: 'right', width: '50%', borderColor: 'black'}}>
           <img src="https://res.cloudinary.com/april-skrine/image/upload/v1646777315/Phase%203%20Project/commentbox_hz9ebz.jpg" alt="comments"/>
