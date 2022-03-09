@@ -124,7 +124,7 @@ function App() {
         />
         <Route
           path="/:mood/:id"
-          element={<ActivityViewer activityData={activityData} />}
+          element={<ActivityViewer activityData={activityData} addReview={addReview} />}
         />
       </Routes>
     </BrowserRouter>
