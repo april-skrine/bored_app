@@ -10,13 +10,6 @@ function ActivityCard({ activity, mood, favoriteClick }) {
 
   return (
     <div className="card-border">
-      <div className="card">
-        <img
-          className="card-img"
-          onClick={() => handleCardID()}
-          src={activity.img_url}
-          alt="activity"
-        />
         <div className="container">
           <h4 className={mood} style={{ fontSize: "20px" }}>
             <b>{activity.activity_name}</b>
@@ -26,6 +19,13 @@ function ActivityCard({ activity, mood, favoriteClick }) {
           </button>
           <p>{activity.description}</p>
         </div>
+      <div className="card" onClick={() => handleCardID()}>
+        <img className="card-img" src={activity.img_url} alt="activity"/>
+          <div className="container">
+            <h4 className={mood} style={{fontSize: '20px'}}><b>{activity.activity_name}</b></h4>
+            <p>{activity.description}</p>
+            <button>Click for comments!</button>
+          </div>
       </div>
     </div>
   );

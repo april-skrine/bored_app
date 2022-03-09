@@ -7,10 +7,14 @@ import React, { useState, useEffect } from "react";
 import FavoriteList from "./Components/FavoriteList";
 
 function App() {
-  const storedMood = localStorage.getItem("mood");
-  const [mood, setMood] = useState(storedMood ? storedMood : "mood");
-  const [activityData, setActivityData] = useState([]);
 
+  // states
+  const storedMood = localStorage.getItem('mood')
+  const [mood, setMood] = useState(storedMood ? storedMood : 'mood')
+  const [activityData, setActivityData] = useState([])
+  const [commentData, setCommentData] = useState([])
+
+  // local storage to persist mood on page refresh
   useEffect(() => {
     localStorage.setItem("mood", mood);
   }, [mood]);
@@ -44,7 +48,20 @@ function App() {
   };
 
   const favoriteActivities = () => activityData.filter((a) => a.favorite);
+  // fetches
+  useEffect( () => {
+    fetch('http://localhost:9292/activities')
+    .then(r => r.json())
+    .then(setActivityData)
+  }, [])
 
+  // useEffect( () => {
+  //   fetch(`http://localhost:9292/comments`)
+  //   .then(r => r.json())
+  //   .then(setActivityData)
+  // }, [])
+
+  // filter the activity data based on the selected mood
   const filteredActivities = () => {
     console.log(activityData, favoriteActivities);
     if (mood === "chill") {
@@ -62,10 +79,22 @@ function App() {
     }
   };
 
-  const handleSelect = (e) => {
-    setMood(e.target.value);
-    filteredActivities();
-  };
+  // set state when user selects mood
+  const handleSelect = e => {
+    setMood(e.target.value)
+    filteredActivities()
+  }
+
+  // function to grab new comment object 
+  const addReview = (newReview) => {
+    fetch("http://localhost:9292/comments",{
+      method:'POST',
+      headers:{"Content-Type": "application/json"},
+      body: JSON.stringify(newReview)
+    })
+    const newestReview = [...commentData, newReview]
+    setCommentData(newestReview)
+  }
 
   return (
     <BrowserRouter>
