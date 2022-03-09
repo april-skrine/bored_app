@@ -145,11 +145,10 @@ div.scroll {
 }
 
 div.inner-scroll {
-  margin-top: 200px;
-  margin-left: 100px;
+  margin-top: 80px;
+  margin-left: 20px;
   width: 400px;
   height: 600px;
   overflow-x: hidden;
-  overflow-y: auto;
-  text-align:justify;
+  white-space: nowrap;
 }

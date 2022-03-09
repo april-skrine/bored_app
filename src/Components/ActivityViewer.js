@@ -69,7 +69,7 @@ function ActivityViewer({addReview}) {
                 <form onSubmit={onSubmit}>
                   <div className="field">
                     <label style={{color: '#f1967f', fontSize: '20px', fontFamily: 'bangers', display:'block', marginTop: '10px'}}>Add a comment</label>
-                    <input onChange={(e) => setReviewComment(e.target.value)} style={{marginTop: '10px', height: '100px'}} type="text" name="name"/>
+                    <textarea  onChange={(e) => setReviewComment(e.target.value)} name="Text1" cols="35" rows="5"/>  
                   </div>
                   <div className="field">
                     <label style={{color: '#f1967f', fontSize: '20px', fontFamily: 'bangers', display:'block', marginTop: '10px'}}>Name</label>
