@@ -2,11 +2,11 @@ import React, {useState, useEffect} from 'react'
 import {useParams} from 'react-router-dom'
 import CommentCard from './CommentCard'
 
-function ActivityViewer({addReview}) {
+function ActivityViewer() {
 
   // states
-  const [reviewComment,setReviewComment] = useState('')
-  const [reviewName,setReviewName] = useState('')
+  const [comment, setComment] = useState('')
+  const [userName, setUserName] = useState('')
   const [viewer, setViewer] = useState({})
   const [allComments, setAllComments] = useState([])
 
@@ -33,16 +33,26 @@ function ActivityViewer({addReview}) {
       method: 'DELETE'
     })
   }
+
+  const addComment = (newComment) => {
+    fetch(`http://localhost:9292/comments/activities/${id}`,{
+      method:'POST',
+      headers:{"Content-Type": "application/json"},
+      body: JSON.stringify(newComment)
+    })
+    const newestComment = [...allComments, newComment]
+    setAllComments(newestComment)
+  }
  
   // create new comment object
   const onSubmit = (e) => {
     e.preventDefault()
-    const newReview = {
-      user_name: reviewName,
-      user_comment: reviewComment,
+    const newComment = {
+      user_name: userName,
+      user_comment: comment,
       activity_id: id
     }
-    addReview(newReview)
+    addComment(newComment)
     e.target.reset()
   }
 
@@ -69,11 +79,11 @@ function ActivityViewer({addReview}) {
                 <form onSubmit={onSubmit}>
                   <div className="field">
                     <label style={{color: '#f1967f', fontSize: '20px', fontFamily: 'bangers', display:'block', marginTop: '10px'}}>Add a comment</label>
-                    <input onChange={(e) => setReviewComment(e.target.value)} style={{marginTop: '10px', height: '100px'}} type="text" name="name"/>
+                    <input onChange={(e) => setComment(e.target.value)} style={{marginTop: '10px', height: '100px'}} type="text" name="name"/>
                   </div>
                   <div className="field">
                     <label style={{color: '#f1967f', fontSize: '20px', fontFamily: 'bangers', display:'block', marginTop: '10px'}}>Name</label>
-                    <input onChange={(e) => setReviewName(e.target.value)} style={{marginTop: '10px'}} type="text" name="name" placeholder="Name"/>
+                    <input onChange={(e) => setUserName(e.target.value)} style={{marginTop: '10px'}} type="text" name="name" placeholder="Name"/>
                   </div>
                   <button 
                     type="submit"
