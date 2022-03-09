@@ -1,12 +1,14 @@
 import React, {useState, useEffect} from 'react'
 import {useParams} from 'react-router-dom'
+import CommentCard from './CommentCard'
 
 function ActivityViewer({addReview, mood}) {
 
   // states
   const [reviewComment,setReviewComment] = useState('')
   const [reviewName,setReviewName] = useState('')
-  const [viewer, setViewer] = useState({})
+  const [viewer, setViewer] = useState('')
+  const [allComments, setAllComments] = useState([])
 
   const {id} = useParams()
 
@@ -17,8 +19,21 @@ function ActivityViewer({addReview, mood}) {
       .then(setViewer)
   }, [id] )
 
-  console.log(viewer)
+   useEffect( () => {
+    fetch(`http://localhost:9292/comments/activities/${id}`)
+    .then(r => r.json())
+    .then(setAllComments)
+  }, [id])
 
+  const deleteComment = comment => {
+    const newListOfComments = allComments.filter(commentObj => commentObj.id !== comment.id)
+    setAllComments(newListOfComments)
+    
+    fetch(`http://localhost:9292/comments/${comment.id}`, {
+      method: 'DELETE'
+    })
+  }
+ 
   // create new comment object
   const onSubmit = (e) => {
     e.preventDefault()
@@ -37,10 +52,10 @@ function ActivityViewer({addReview, mood}) {
         <div className="child-comments">
           <div className="card-border">
             <div className="card">
-              <img className="card-img" src={viewer[0].img_url} alt="viewer"/>
+              <img className="card-img" src={viewer.img_url} alt="viewer"/>
               <div className="container">
-              <h4 className={mood} style={{fontSize: '20px'}}><b>{viewer[0].activity_name}</b></h4>
-              <p>{viewer[0].description}</p>
+              <h4 className={mood} style={{fontSize: '20px'}}><b>{viewer.activity_name}</b></h4>
+              <p>{viewer.description}</p>
               </div>
             </div>
           </div>
@@ -62,6 +77,9 @@ function ActivityViewer({addReview, mood}) {
         <div className="child-comments">
           <img src="https://res.cloudinary.com/april-skrine/image/upload/v1646777315/Phase%203%20Project/commentbox_hz9ebz.jpg" alt="comments"/>
         </div>
+        <p>
+           {allComments.map(comment => <CommentCard key={comment.id} comment={comment} deleteComment={deleteComment}/>)}
+        </p>
     </div>
   )
 }

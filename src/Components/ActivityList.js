@@ -20,14 +20,7 @@ function ActivityList({ mood, filteredActivities, favoriteClick }) {
         />
       </div>
       <div className="center-cards" style={{ marginTop: "400px" }}>
-        {filteredActivities().map((activity) => (
-          <ActivityCard
-            favoriteClick={favoriteClick}
-            key={activity.id}
-            activity={activity}
-            mood={mood}
-          />
-        ))}
+        {filteredActivities().map((activity) => <ActivityCard favoriteClick={favoriteClick} key={activity.id} activity={activity}mood={mood}/> )}
       </div>
     </div>
   );

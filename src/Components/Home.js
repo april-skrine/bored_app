@@ -21,7 +21,7 @@ function Home({ handleSelect, mood }) {
       />
       <div className="center">
         <select className="select" onChange={handleSelect} value={mood}>
-          <option hidden value={"mood"}>
+          <option value={"mood"}>
             what kind of bored?
           </option>
           <option

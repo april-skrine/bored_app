@@ -18,12 +18,14 @@ function App() {
   useEffect(() => {
     localStorage.setItem("mood", mood);
   }, [mood]);
+  
 
-  useEffect(() => {
-    fetch("http://localhost:9292/activities")
-      .then((r) => r.json())
-      .then(setActivityData);
-  }, []);
+  useEffect( () => {
+    fetch('http://localhost:9292/activities')
+    .then(r => r.json())
+    .then(setActivityData)
+  }, [])
+  
 
   const favoriteClick = (oldActivity) => {
     fetch(`http://localhost:9292/activities/` + oldActivity.id, {
@@ -55,30 +57,27 @@ function App() {
     .then(setActivityData)
   }, [])
 
-  // useEffect( () => {
-  //   fetch(`http://localhost:9292/comments`)
-  //   .then(r => r.json())
-  //   .then(setActivityData)
-  // }, [])
 
-  // filter the activity data based on the selected mood
+ 
+
+  
   const filteredActivities = () => {
-    console.log(activityData, favoriteActivities);
-    if (mood === "chill") {
-      return activityData.filter((a) => a.mood_id === 1);
-    } else if (mood === "adventurous") {
-      return activityData.filter((a) => a.mood_id === 2);
-    } else if (mood === "hungry") {
-      return activityData.filter((a) => a.mood_id === 3);
-    } else if (mood === "creative") {
-      return activityData.filter((a) => a.mood_id === 4);
-    } else if (mood === "hype") {
-      return activityData.filter((a) => a.mood_id === 5);
+    if (mood === 'chill') {
+      return activityData.filter(a => a.mood_id === 1)
+    } else if (mood === 'adventurous') {
+      return activityData.filter(a => a.mood_id === 2)
+    } else if (mood === 'hungry') {
+      return activityData.filter(a => a.mood_id === 3)
+    } else if (mood === 'creative') {
+      return activityData.filter(a => a.mood_id === 4)
+    } else if (mood === 'hype') {
+      return activityData.filter(a => a.mood_id === 5)
     } else {
-      return activityData;
-    }
-  };
+      return activityData
+    }  
+   }
 
+ 
   // set state when user selects mood
   const handleSelect = e => {
     setMood(e.target.value)
