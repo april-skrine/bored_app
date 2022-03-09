@@ -57,21 +57,18 @@ function App() {
     .then(setActivityData)
   }, [])
 
-
- 
-
-  
+  // filter the activity data based on the selected mood
   const filteredActivities = () => {
-    if (mood === 'chill') {
-      return activityData.filter(a => a.mood_id === 1)
-    } else if (mood === 'adventurous') {
-      return activityData.filter(a => a.mood_id === 2)
-    } else if (mood === 'hungry') {
-      return activityData.filter(a => a.mood_id === 3)
-    } else if (mood === 'creative') {
-      return activityData.filter(a => a.mood_id === 4)
-    } else if (mood === 'hype') {
-      return activityData.filter(a => a.mood_id === 5)
+      if (mood === "chill") {
+      return activityData.filter((a) => a.mood_id === 1);
+    } else if (mood === "adventurous") {
+      return activityData.filter((a) => a.mood_id === 2);
+    } else if (mood === "hungry") {
+      return activityData.filter((a) => a.mood_id === 3);
+    } else if (mood === "creative") {
+      return activityData.filter((a) => a.mood_id === 4);
+    } else if (mood === "hype") {
+      return activityData.filter((a) => a.mood_id === 5);
     } else {
       return activityData
     }  
@@ -108,6 +105,7 @@ function App() {
             <FavoriteList
               favoriteActivities={favoriteActivities}
               favoriteClick={favoriteClick}
+              mood={mood}
             />
           }
         />
@@ -123,7 +121,10 @@ function App() {
         />
         <Route
           path="/:mood/:id"
-          element={<ActivityViewer activityData={activityData} addReview={addReview} />}
+          element={
+            <ActivityViewer 
+                activityData={activityData} 
+                addReview={addReview}/>}
         />
       </Routes>
     </BrowserRouter>
