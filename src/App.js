@@ -6,20 +6,32 @@ import ActivityViewer from './Components/ActivityViewer';
 import React, {useState, useEffect} from 'react';
 
 function App() {
+
+  // states
   const storedMood = localStorage.getItem('mood')
   const [mood, setMood] = useState(storedMood ? storedMood : 'mood')
   const [activityData, setActivityData] = useState([])
+  const [commentData, setCommentData] = useState([])
 
+  // local storage to persist mood on page refresh
   useEffect(() => {
     localStorage.setItem('mood', (mood));
   }, [mood]);
 
+  // fetches
   useEffect( () => {
     fetch('http://localhost:9292/activities')
     .then(r => r.json())
     .then(setActivityData)
   }, [])
 
+  // useEffect( () => {
+  //   fetch(`http://localhost:9292/comments`)
+  //   .then(r => r.json())
+  //   .then(setActivityData)
+  // }, [])
+
+  // filter the activity data based on the selected mood
   const filteredActivities = () => {
 
     if (mood === 'chill') {
@@ -37,9 +49,21 @@ function App() {
     }  
    }
 
+  // set state when user selects mood
   const handleSelect = e => {
     setMood(e.target.value)
     filteredActivities()
+  }
+
+  // function to grab new comment object 
+  const addReview = (newReview) => {
+    fetch("http://localhost:9292/comments",{
+      method:'POST',
+      headers:{"Content-Type": "application/json"},
+      body: JSON.stringify(newReview)
+    })
+    const newestReview = [...commentData, newReview]
+    setCommentData(newestReview)
   }
 
   return (
@@ -47,7 +71,7 @@ function App() {
         <Routes>
           <Route path='/' element={<Home handleSelect={handleSelect} mood={mood}/>}/>
           <Route path='/:mood' element={<ActivityList mood={mood} filteredActivities={filteredActivities} />}/>
-          <Route path='/:mood/:id' element={<ActivityViewer activityData={activityData} />}/>
+          <Route path='/:mood/:id' element={<ActivityViewer activityData={activityData} addReview={addReview} mood={mood}/>}/>
         </Routes>
       </BrowserRouter>
   );

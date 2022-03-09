@@ -14,9 +14,9 @@ function ActivityList({mood, filteredActivities}) {
         <h1 className={mood} style={{marginTop: '200px', marginRight: '10px', color: '#f1b881'}}>{mood}</h1>
         <img src="https://res.cloudinary.com/april-skrine/image/upload/v1646748604/Phase%203%20Project/boredlogo2_quh7b5.jpg" alt="logo small" style={{width:'400px', marginTop: '200px'}} />
       </div>
-        <div className="center-cards" style={{marginTop: '400px'}}>
+        <div className="parent">
           {filteredActivities().map(activity => <ActivityCard key={activity.id} activity={activity} mood={mood}/>)}
-      </div>
+        </div>
     </div>
   )
 }

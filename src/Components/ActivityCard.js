@@ -16,6 +16,7 @@ function ActivityCard({activity, mood}) {
           <div className="container">
             <h4 className={mood} style={{fontSize: '20px'}}><b>{activity.activity_name}</b></h4>
             <p>{activity.description}</p>
+            <button>Click for comments!</button>
           </div>
       </div>
     </div>
