@@ -14,12 +14,20 @@ function App() {
   const [activityData, setActivityData] = useState([])
   // const [commentData, setCommentData] = useState([])
 
+
   // local storage to persist mood on page refresh
   useEffect(() => {
     localStorage.setItem("mood", mood);
   }, [mood]);
-    
 
+  // fetch
+  useEffect( () => {
+    fetch('http://localhost:9292/activities')
+    .then(r => r.json())
+    .then(setActivityData)
+  }, [])
+    
+  // favorites functions
   const favoriteClick = (oldActivity) => {
     fetch(`http://localhost:9292/activities/` + oldActivity.id, {
       method: "PATCH",
@@ -42,13 +50,7 @@ function App() {
     setActivityData(newActivityData);
   };
 
-  const favoriteActivities = () => activityData.filter((a) => a.favorite);
-  // fetches
-  useEffect( () => {
-    fetch('http://localhost:9292/activities')
-    .then(r => r.json())
-    .then(setActivityData)
-  }, [])
+  const favoriteActivities = () => activityData.filter((a) => a.favorite)
 
   // filter the activity data based on the selected mood
   const filteredActivities = () => {
