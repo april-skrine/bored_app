@@ -1,8 +1,7 @@
 import React from 'react'
 
 function CommentCard({deleteComment, comment}) {
-  return (
-
+    return (
     <div>
       <p 
         style={{color: '#f1967f', 

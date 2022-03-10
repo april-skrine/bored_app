@@ -25,23 +25,24 @@ function ActivityViewer() {
     .then(setAllComments)
   }, [id])
 
-  const deleteComment = comment => {
-    const newListOfComments = allComments.filter(commentObj => commentObj.id !== comment.id)
-    setAllComments(newListOfComments)
-    
-    fetch(`http://localhost:9292/comments/${comment.id}`, {
-      method: 'DELETE'
-    })
-  }
-
   const addComment = (newComment) => {
     fetch(`http://localhost:9292/comments/activities/${id}`,{
       method:'POST',
       headers:{"Content-Type": "application/json"},
       body: JSON.stringify(newComment)
     })
-    const newestComment = [...allComments, newComment]
-    setAllComments(newestComment)
+    .then(r => r.json())
+    .then(newComment => setAllComments( [...allComments, newComment]))   
+  }
+
+  const deleteComment = comment => {
+    const newListOfComments = allComments.filter(commentObj => commentObj.id !== comment.id)
+    setAllComments(newListOfComments)
+    console.log(allComments)
+    
+    fetch(`http://localhost:9292/comments/${comment.id}`, {
+      method: 'DELETE'
+    })
   }
  
   // create new comment object
