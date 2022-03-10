@@ -12,20 +12,13 @@ function App() {
   const storedMood = localStorage.getItem('mood')
   const [mood, setMood] = useState(storedMood ? storedMood : 'mood')
   const [activityData, setActivityData] = useState([])
-  const [commentData, setCommentData] = useState([])
+  // const [commentData, setCommentData] = useState([])
 
   // local storage to persist mood on page refresh
   useEffect(() => {
     localStorage.setItem("mood", mood);
   }, [mood]);
-  
-
-  useEffect( () => {
-    fetch('http://localhost:9292/activities')
-    .then(r => r.json())
-    .then(setActivityData)
-  }, [])
-  
+    
 
   const favoriteClick = (oldActivity) => {
     fetch(`http://localhost:9292/activities/` + oldActivity.id, {
@@ -81,16 +74,6 @@ function App() {
     filteredActivities()
   }
 
-  // function to grab new comment object 
-  const addReview = (newReview) => {
-    fetch("http://localhost:9292/comments",{
-      method:'POST',
-      headers:{"Content-Type": "application/json"},
-      body: JSON.stringify(newReview)
-    })
-    const newestReview = [...commentData, newReview]
-    setCommentData(newestReview)
-  }
 
   return (
     <BrowserRouter>
@@ -124,7 +107,7 @@ function App() {
           element={
             <ActivityViewer 
                 activityData={activityData} 
-                addReview={addReview}/>}
+            />}
         />
       </Routes>
     </BrowserRouter>

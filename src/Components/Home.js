@@ -21,13 +21,12 @@ function Home({ handleSelect, mood }) {
       />
       <div className="center">
         <select className="select" onChange={handleSelect} value={mood}>
-          <option selected="selected" value={"mood"}>
+          <option defaultValue={"mood"}>
             what kind of bored?
           </option>
           <option
             value={"chill"}
-            style={{ fontFamily: "BhuTuka Expanded One" }}
-          >
+            style={{ fontFamily: "BhuTuka Expanded One" }}>
             chill
           </option>
           <option value={"adventurous"} style={{ fontFamily: "impact" }}>
@@ -44,15 +43,9 @@ function Home({ handleSelect, mood }) {
           </option>
         </select>
       </div>
-      <div className="center">
-        <button className="button" onClick={pushRoute}>
-          show me things to do!
-        </button>
-      </div>
-      <div className="center">
-        <button className="button" onClick={pushRouteFav}>
-          show favorites
-        </button>
+      <div className="parent-buttons">
+        <img onClick={pushRoute} src="https://res.cloudinary.com/april-skrine/image/upload/v1646921618/Phase%203%20Project/buttonshow_ivcd8p.jpg"/>
+        <img onClick={pushRouteFav} style={{marginTop: '70px', marginRight: '50px'}}src="https://res.cloudinary.com/april-skrine/image/upload/v1646921618/Phase%203%20Project/buttonshowfav_irn03o.jpg"/>
       </div>
     </div>
   );

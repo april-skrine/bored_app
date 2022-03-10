@@ -14,7 +14,7 @@ function CommentCard({deleteComment, comment}) {
       </p>
       <p className="excerpt" style={{fontFamily: 'Roboto Condensed'}}>
         <pre>
-          {comment.user_comment}
+          <p className="individual-comment">{comment.user_comment}</p>
         </pre>
         <button onClick={() => deleteComment(comment)} >
             🗑️
