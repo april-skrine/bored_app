@@ -4,10 +4,12 @@ import { useNavigate } from "react-router-dom";
 function Home({ handleSelect, mood }) {
   const navigate = useNavigate();
 
+  // push to mood pages
   const pushRoute = () => {
     navigate(`/${mood}`);
   };
 
+  // push to favorites
   const pushRouteFav = () => {
     navigate("/favorites");
   };
@@ -44,8 +46,8 @@ function Home({ handleSelect, mood }) {
         </select>
       </div>
       <div className="parent-buttons">
-        <img onClick={pushRoute} src="https://res.cloudinary.com/april-skrine/image/upload/v1646921618/Phase%203%20Project/buttonshow_ivcd8p.jpg"/>
-        <img onClick={pushRouteFav} style={{marginTop: '70px', marginRight: '50px'}}src="https://res.cloudinary.com/april-skrine/image/upload/v1646921618/Phase%203%20Project/buttonshowfav_irn03o.jpg"/>
+        <img className="home-page-buttons" onClick={pushRoute} src="https://res.cloudinary.com/april-skrine/image/upload/v1646924041/Phase%203%20Project/activitybutton2-removebg-preview_ebspw0.png"/>
+        <img className="home-page-buttons" onClick={pushRouteFav} style={{marginTop: '70px', marginRight: '50px'}} src="https://res.cloudinary.com/april-skrine/image/upload/v1646924041/Phase%203%20Project/favbutton2-removebg-preview_z90ue0.png"/>
       </div>
     </div>
   );

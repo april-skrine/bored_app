@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react'
-import {useParams} from 'react-router-dom'
+import {useParams, useNavigate} from 'react-router-dom'
 import CommentCard from './CommentCard'
 
 function ActivityViewer() {
@@ -10,9 +10,11 @@ function ActivityViewer() {
   const [viewer, setViewer] = useState({})
   const [allComments, setAllComments] = useState([])
 
+  // variables
   const {id} = useParams()
+  const navigate = useNavigate();
 
-  
+  // fetches
   useEffect( () => {
     fetch(`http://localhost:9292/activities/${id}`)
       .then(r => r.json())
@@ -25,6 +27,12 @@ function ActivityViewer() {
     .then(setAllComments)
   }, [id])
 
+  // back to home button
+  const pushHome = () => {
+    navigate("/")
+  }
+
+  // comment functions
   const deleteComment = comment => {
     const newListOfComments = allComments.filter(commentObj => commentObj.id !== comment.id)
     setAllComments(newListOfComments)
@@ -66,8 +74,14 @@ function ActivityViewer() {
           style={{ width: "400px", marginTop: "100px" }}
         />
       </div>
-      {/* end logo section */}
-      <div className="parent">
+      {/* end logo section, start flex-box */}
+      <div className="parent-comments">
+        <div>
+          <img
+            className="home-page-buttons"
+            src="https://res.cloudinary.com/april-skrine/image/upload/v1646924865/Phase%203%20Project/backbutton-removebg-preview_exnhlu.png" alt="back button" 
+            onClick={pushHome}/>
+        </div>
         {/* starts activity card */}
         <div className="card-border">
           <div className="card">

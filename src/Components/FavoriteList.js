@@ -3,6 +3,7 @@ import ActivityCard from "./ActivityCard";
 
 function FavoriteList({ favoriteActivities, favoriteClick, mood}) {
 
+  // variables
   const colors = ["#f27279", "#f1b881", "#f1967f", "#f1c37e", "#f1717b", "#f7d6b5"]
   const randomColors = Math.floor(Math.random() * colors.length)
   const moods = {
