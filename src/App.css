@@ -179,3 +179,15 @@ p.individual-comment {
   opacity: 0.5;
   filter: alpha(opacity=100);
 }
+
+/* Hover effects for navigation */
+.most-popular {
+  opacity: 1.0;  
+  filter: alpha(opacity=40);
+}
+
+/* Hover effects for navigation */
+.not-popular {
+  opacity: 0.0;
+  filter: alpha(opacity=100);
+}

@@ -1,16 +1,29 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import { useNavigate } from "react-router-dom";
 
 function ActivityCard({ activity, mood, favoriteClick }) {
-  const navigate = useNavigate();
 
+  const navigate = useNavigate();
+  const [mostPopular, setMostPopular] = useState([])
+  
   const handleCardID = () => {
     navigate(`/${mood}/${activity.id}`);
   };
 
+  useEffect( () => {
+    fetch(`http://localhost:9292/activities/most_popular/${activity.mood_id}`)
+    .then(r => r.json())
+    .then(setMostPopular)
+  }, [])
+
   return (
     <div className="card-border">
       <div className="card">
+        <img 
+          className={mostPopular.id === activity.id ? "most-popular" : "not-popular"} 
+          src='https://res.cloudinary.com/april-skrine/image/upload/v1646928410/Phase%203%20Project/crown-removebg-preview_qcffof.png'
+          alt="activity"
+        />
         <img className="card-img" src={activity.img_url} alt="activity"/>
           <div className="container">
             <h4 className={mood} style={{fontSize: '20px'}}><b>{activity.activity_name}</b></h4>
