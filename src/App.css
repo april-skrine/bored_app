@@ -41,6 +41,7 @@
   box-shadow: 0 4px 8px 0 #f1b881;
   transition: 0.3s;
   width: 350px;
+  position: relative;
 }
 
 /* On mouse-over, add a deeper shadow to activity cards */
@@ -180,14 +181,17 @@ p.individual-comment {
   filter: alpha(opacity=100);
 }
 
-/* Hover effects for navigation */
-.most-popular {
-  opacity: 1.0;  
-  filter: alpha(opacity=40);
+.crown-visible {
+  opacity: 1.0;
+  position: absolute;
+  top: -10%;
+  left: -5%;
 }
 
-/* Hover effects for navigation */
-.not-popular {
+.crown-invisible {
   opacity: 0.0;
-  filter: alpha(opacity=100);
+  position: absolute;
+  top: 20%;
+  left: 10%;
 }
+

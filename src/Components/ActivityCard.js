@@ -19,8 +19,8 @@ function ActivityCard({ activity, mood, favoriteClick }) {
   return (
     <div className="card-border">
       <div className="card">
-        <img 
-          className={mostPopular.id === activity.id ? "most-popular" : "not-popular"} 
+      <img 
+          className={mostPopular.id === activity.id ? "crown-visible" : "crown-invisible"} 
           src='https://res.cloudinary.com/april-skrine/image/upload/v1646928410/Phase%203%20Project/crown-removebg-preview_qcffof.png'
           alt="activity"
         />
